@@ -1,0 +1,5 @@
+Disclaimer:
+
+	- Make sure to configure the date, term, and crn list within the config section at the bottom for your needs.
+
+	- I am not liable in any way if this doesn't work for some reason (or if you get in trouble for using it in its original or any modified form).
