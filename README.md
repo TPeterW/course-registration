@@ -1,7 +1,7 @@
 course-registration
 ===================
 
-A script that can automate course registration within some Bannerweb-based systems.  Based on that of Middlebury College.
+A script that can automate course registration within some BannerWeb-based systems.  Based on that of Middlebury College.
 
 Usage
 -----
