@@ -10,7 +10,7 @@ Modification
 
 * Allowed user to type in their information
 
-* Added cache function, user can save their configuration for a future registration and come back later. Configuration saved in 'reg.ini' file, not visible on Unix based system.
+* Added cache function, user can save their configuration for a future registration and come back later. Configuration saved in 'reg.ini' file, not visible on OS X.
 
 Usage
 -----
