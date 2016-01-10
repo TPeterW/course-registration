@@ -1,9 +1,25 @@
-course-registration
+Course Registration
 ===================
 
-A script that can automate course registration within some BannerWeb-based systems.  Based on that of Middlebury College.
+Cross platform program for registering for classes for Middlebury College Bannerweb system.
+
+
+Modification
+----
+* Packed into executables, easier for non Python lovers to use
+
+* Allowed user to type in their information
+
+* Added cache function, user can save their configuration for a future registration and come back later. Configuration saved in 'reg.ini' file, not visible on Unix based system.
 
 Usage
 -----
+Click on the executable found in the release section of this project according to your platform, and you're good to go.
 
-Configure the hardcoded values (date of registration, term to register for, and CRNs to register for) within course-registration.py and then run the script.  Note that you may need to install a few Python libraries if you don't already have them installed; this script depends on getpass, mechanize, time, datetime, and BeautifulSoup.
+Known Limitation
+----
+* Does not handle exceptions that happen during the part where emulated browser opens the registration page
+
+* Only checks the format of term_string, but does not check validity 
+
+* Source code all in one file, will change soon. Sorry to other contributor (if any) ╮(╯▽╰)╭ .
