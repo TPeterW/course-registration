@@ -29,9 +29,9 @@ Decompress the tar.gz file
 
     tar -xzvf Course_Registration_Linux.tar.gz
 
-Execute extracted program in terminal
+Execute program in extracted folder from terminal
 
-    ./course_registration
+    ./course_registration/course_registration
 
 
 
