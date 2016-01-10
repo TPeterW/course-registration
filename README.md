@@ -16,6 +16,12 @@ Usage
 -----
 Click on the executable found in the release section of this project according to your platform, and you're good to go.
 
+__Note:__
+
+On Mac OS X, before first launch, if your security setting only allows apps made by "Mac App Store and identified developers", you wll receive a security warning. To disable it and run the program, go to "System Preferences" then "Security & Privacy", and click on "Open Anyway".
+
+
+
 Known Limitation
 ----
 * Does not handle exceptions that happen during the part where emulated browser opens the registration page
