@@ -14,11 +14,22 @@ Modification
 
 Usage
 -----
-Click on the executable found in the release section of this project according to your platform, and you're good to go.
+__Windows__
 
-__Note:__
+To be added...
 
-On Mac OS X, before first launch, if your security setting only allows apps made by "Mac App Store and identified developers", you wll receive a security warning. To disable it and run the program, go to "System Preferences" then "Security & Privacy", and click on "Open Anyway".
+__OS X__
+
+Decompress (unzip) the .zip file, and double click on the executable.
+_Note_: before first launch, if your security setting only allows apps made by "Mac App Store and identified developers", you wll receive a security warning. To disable it and run the program, go to "System Preferences" then "Security & Privacy", and click on "Open Anyway".
+
+__Linux__
+
+Decompress the tar.gz file
+
+    tar -xzvf Course_Registration_Linux.tar.gz
+
+Enter extracted folder, and execute in terminal.
 
 
 
