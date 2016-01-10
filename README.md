@@ -1,7 +1,7 @@
 Course Registration
 ===================
 
-Cross platform program for registering for classes for Middlebury College Bannerweb system.
+Cross platform program for registering for classes for Middlebury College Bannerweb system. Based on the [script](https://github.com/danielhtrauner/course-registration "script") by [@danielhtrauner](https://github.com/danielhtrauner "Daniel")
 
 
 Modification
