@@ -74,7 +74,7 @@ def main():
     print('Registered for ' + str(registered_courses) + ' courses in ' + str(attempt) + ' attempt(s)!\n')
     
     # for Windows only
-    raw_input('Press any key to exit...')
+    # raw_input('Press any key to exit...')
     
 def handle_login():
     cfg = ConfigParser.ConfigParser()
