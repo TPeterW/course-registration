@@ -32,6 +32,7 @@ def main():
     date_string = reg_data['date']
     crn_string = reg_data['CRNs']
     term_string = reg_data['term']
+    alt_pin = reg_data['apin']
     
     # find all crns
     crn_list = re.findall(re.compile(r'[0-9]{5}'), crn_string)
@@ -56,7 +57,7 @@ def main():
     while not registered_courses:
         #submit each crn in crn_list
         try:
-            registered_courses = register(uid, pin, term_to_termcode(term_string), crn_list)
+            registered_courses = register(uid, pin, term_to_termcode(term_string), crn_list, alt_pin)
         except KeyboardInterrupt as e:
             print('\nBye!')
             exit(1)
@@ -140,7 +141,7 @@ def handle_registration():
         cache_choice = raw_input('There is plan for registration on %s, do you want to continue with this plan? (y/n/d): ' % date_string)
         
         if cache_choice.startswith('y') or len(cache_choice) == 0:
-            return {'date': date_string, 'CRNs':cfg.get('Reg', 'CRNs'), 'term':cfg.get('Reg', 'term')}
+            return {'date': date_string, 'CRNs':cfg.get('Reg', 'CRNs'), 'term':cfg.get('Reg', 'term'), 'apin':cfg.get('Reg', 'apin')}
         if cache_choice.startswith('d'):
             cfg.remove_section('Reg')
     
@@ -168,6 +169,14 @@ def handle_registration():
     while not re.match(r'spring|fall|autumn|summer|winter\s[0-9]{4}', term_string.lower()):
         term_string = raw_input('Please enter in the correct format: ')
         
+    # ask user for alternate pin
+    alt_pin = raw_input('\nPlease enter your alternate PIN (press Enter if N/A): ')
+    while not re.match(r'[0-9]{4}', alt_pin):
+        if len(alt_pin) == 0:
+            alt_pin = ''
+            break
+        else:
+            alt_pin = raw_input('Please enter in the correct format: ')
     
     print('Registration saved\n')
     iniFile = open('reg.ini', 'wb')
@@ -177,13 +186,14 @@ def handle_registration():
     cfg.set('Reg', 'date', date_string)
     cfg.set('Reg', 'CRNs', crn_string)
     cfg.set('Reg', 'term', term_string)
+    cfg.set('Reg', 'apin', alt_pin)
     cfg.write(iniFile)
     iniFile.close()
     
-    return {'date': date_string, 'CRNs': crn_string, 'term': term_string}
+    return {'date': date_string, 'CRNs': crn_string, 'term': term_string, 'apin': alt_pin}
         
           
-def register(user_id, user_pin, term_code, crn_list):
+def register(user_id, user_pin, term_code, crn_list, alt_pin):
     '''
     Log in again using uid and pin
     navigates to course registration page and submits
@@ -205,6 +215,24 @@ def register(user_id, user_pin, term_code, crn_list):
     br.open(br.find_link(text='Student Records & Registration').url)
     br.open(br.find_link(text='Registration').url)
     br.open(br.find_link(text='Register or Add/Drop Classes').url)
+    
+    # check whether alt_pin is ''
+    
+    '''
+    TODO: Wait till the pre-reg comes out, and need to find out the form name for Altenate PIN
+    '''
+    # if len(alt_pin) > 0:
+    #     for form in br.forms():
+    #         if form.attrs.get('id') == 'apin_id':
+    #             br.form = form
+    
+    if len(alt_pin) > 0:
+        apin = br.forms[1].controls[0]
+        apin.value = alt_pin
+        br.submit()
+    else:
+        print('No alternate pin found.')
+    
     
     # now at term selection page
     br.form = list(br.forms())[1]       # find all input fields
@@ -293,6 +321,7 @@ def wait_until_time(reg_date):
                         remaining.minute, 
                         remaining.second, 
                         reg_date))
+            # remove the following 3 lines for Windows
             CURSOR_UP_ONE = '\x1b[1A'
             ERASE_LINE = '\x1b[2K'
             print(CURSOR_UP_ONE + CURSOR_UP_ONE + ERASE_LINE)
