@@ -18,7 +18,7 @@ __Windows__
 
 Decompress (unzip) downloaded .zip file, and double click on the __.exe__ executable.
 
-Configuration file is at "C:\\Users\\YOUR_USER_NAME\\AppData\\CourseRegistration\\reg.ini"
+Configuration file is at "C:\\Users\\YOUR_USER_NAME\\AppData\\Local\\CourseRegistration\\reg.ini"
 
 __OS X__
 
