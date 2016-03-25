@@ -46,6 +46,9 @@ Instructions are clear inside the program, one thing to note is that the program
 You can simply enter your specifications and exit the program by clicking the "x" button or ctrl+c. You will be able to recover your records next time the program is run.
 To secure more sleep, you can simply leave your laptop on over night, make sure it doesn't go to sleep, and the program will execute at 7:00am sharp.
 
+If you have any questions, please don't hesitate to contact me via taow@middlebury.edu.
+有问题发我明德邮箱，专业抓虫20年。
+
 Known Limitations
 ----
 * Does not handle exceptions that happen during the part where emulated browser opens the registration page
