@@ -166,7 +166,7 @@ def handle_registration():
 
     # ask user for semester
     term_string = raw_input('\nPlease enter semester (eg. "Fall 2016"): ')
-    while not re.match(r'spring|fall|autumn|summer|winter\s[0-9]{4}', term_string.lower()):
+    while not re.match(r'spring|fall|autumn|summer|winter\s[0-9]{4}[\s*]', term_string.lower()):
         term_string = raw_input('Please enter in the correct format: ')
         
     # ask user for alternate pin
