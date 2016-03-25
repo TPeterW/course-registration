@@ -12,7 +12,7 @@ Modifications
 
 * Added cache function, user can save their configuration for a future registration and come back later. Configuration saved in 'reg.ini' file.
 
-Usage
+Installation
 -----
 __Windows__
 
@@ -40,6 +40,11 @@ Execute program in extracted folder from terminal
 
 Configuration file is at program directory
 
+Usage
+-----
+Instructions are clear inside the program, one thing to note is that the program memorises your registration date and registration plan including CRNs and alternate PIN.
+You can simply enter your specifications and exit the program by clicking the "x" button or ctrl+c. You will be able to recover your records next time the program is run.
+To secure more sleep, you can simply leave your laptop on over night, make sure it doesn't go to sleep, and the program will execute at 7:00am sharp.
 
 Known Limitations
 ----
