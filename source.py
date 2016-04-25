@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Modified on Sat Jan  2 11:27:29 2016
+Modified on Mon Apr 25 2016
 
 @modifier: Tao Peter Wang https://github.com/TPeterW
 Based on:
@@ -55,7 +55,7 @@ def main():
     attempt = 0
     
     while not registered_courses:
-        #submit each crn in crn_list
+        # submit each crn in crn_list
         try:
             registered_courses = register(uid, pin, term_to_termcode(term_string), crn_list, alt_pin)
         except KeyboardInterrupt as e:
@@ -217,17 +217,9 @@ def register(user_id, user_pin, term_code, crn_list, alt_pin):
     br.open(br.find_link(text='Register or Add/Drop Classes').url)
     
     # check whether alt_pin is ''
-    
-    '''
-    TODO: Wait till the pre-reg comes out, and need to find out the form name for Altenate PIN
-    '''
-    # if len(alt_pin) > 0:
-    #     for form in br.forms():
-    #         if form.attrs.get('id') == 'apin_id':
-    #             br.form = form
-    
     if len(alt_pin) > 0:
-        apin = br.forms[1].controls[0]
+        br.select_form(nr = 1)
+        apin = br.form.find_control('pin')
         apin.value = alt_pin
         br.submit()
     else:
@@ -251,6 +243,7 @@ def register(user_id, user_pin, term_code, crn_list, alt_pin):
     
     all_crn_fields = crn_fields[1:]         # excluding the first one?
     
+    # fill in the crns
     for i, field in enumerate(all_crn_fields):
         if i < len(crn_list):
             try:
@@ -258,7 +251,7 @@ def register(user_id, user_pin, term_code, crn_list, alt_pin):
             except AttributeError:
                 print('Cannot register for ' + crn_list[i] + '!')
     
-    print
+    print       # empty line
     response = br.submit()
     
     soup = BeautifulSoup(response.read(), 'html.parser')
