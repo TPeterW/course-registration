@@ -1,9 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+'''
+Only going to work for Spring 2018
+'''
+
 import requests
 import mechanicalsoup
 from getpass import getpass
+
+term = 201823
 
 def main():
 	sid = input('Please input your 8 digit student ID: ')
@@ -11,12 +17,12 @@ def main():
 
 	crns = []
 	crn = '11111'
-	while crn != '00000':
+	while True:
 		crn = input('Add crn of one course you want to register (00000 to finish adding): ')
-		crns.append(crn)
-
-	print(crns)
-	return
+		if crn == '00000':
+			break
+		else:
+			crns.append(crn)
 
 	cookies = firstStep(sid, pin)
 
@@ -51,15 +57,13 @@ def firstStep(sid, pin):
 
 	resp = requests.request("POST", url, data=payload, headers=headers, cookies=cookies)
 
-	with open('index.html', 'w') as outputfile:
-		outputfile.write(resp.text)
+	# with open('index.html', 'w') as outputfile:
+	# 	outputfile.write(resp.text)
 
 	return resp.cookies
 
 def lastStep(crns, cookies):
-	rl = "https://ssb-prod.ec.middlebury.edu/PNTR/bwckcoms.P_Regs"
-
-	payload = "term_in=201823&RSTS_IN=DUMMY&assoc_term_in=DUMMY&CRN_IN=DUMMY&start_date_in=DUMMY&end_date_in=DUMMY&SUBJ=DUMMY&CRSE=DUMMY&SEC=DUMMY&LEVL=DUMMY&CRED=DUMMY&GMOD=DUMMY&TITLE=DUMMY&MESG=DUMMY&REG_BTN=DUMMY&REG_BTN=Submit%2BChanges&regs_row=0&wait_row=0&add_row=10"
+	url = "https://ssb-prod.ec.middlebury.edu/PNTR/bwckcoms.P_Regs"
 
 	headers = {
 		# 'cookie': cookie,
@@ -82,8 +86,8 @@ def lastStep(crns, cookies):
 		resp = requests.request("POST", url, data=payload, headers=headers, cookies=cookies)
 		print(str(resp) + ' for %s' % str(crn))
 
-	with open('register.html', 'w') as outputfile:
-		outputfile.write(resp.text)
+	# with open('register.html', 'w') as outputfile:
+	# 	outputfile.write(resp.text)
 
 if __name__ == '__main__':
 	main()
@@ -101,7 +105,7 @@ def unused():
 	for link in br.links():
 		if link.text == 'Register or Add/Drop Classes':
 			resp = br.follow_link(link)
-    
+
 	# choose term
 	# data = {'term_in': '201820'}
 	# data = {'term_in': '201823'}
