@@ -5,8 +5,6 @@ import requests
 import mechanicalsoup
 from getpass import getpass
 
-u_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/604.3.5 (KHTML, like Gecko) Version/11.0.1 Safari/604.3.5'
-
 def main():
 	sid = input('Please input your 8 digit student ID: ')
 	pin = getpass('Please input password: ')
