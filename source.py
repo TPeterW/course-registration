@@ -13,13 +13,13 @@ from datetime import datetime, timedelta
 term = 201820
 
 def main():
-	sid = input('Please input your 8 digit student ID: ')
+	sid = raw_input('Please input your 8 digit student ID: ')
 	pin = getpass('Please input password: ')
 
 	crns = []
 	crn = '11111'
 	while True:
-		crn = input('Add crn of one course you want to register (00000 to finish adding): ')
+		crn = raw_input('Add crn of one course you want to register (00000 to finish adding): ')
 		if crn == '00000':
 			break
 		else:
