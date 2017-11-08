@@ -13,13 +13,13 @@ from datetime import datetime, timedelta
 term = 201820
 
 def main():
-	sid = raw_input('Please input your 8 digit student ID: ')
+	sid = input('Please input your 8 digit student ID: ')
 	pin = getpass('Please input password: ')
 
 	crns = []
 	crn = '11111'
 	while True:
-		crn = raw_input('Add crn of one course you want to register (00000 to finish adding): ')
+		crn = input('Add crn of one course you want to register (00000 to finish adding): ')
 		if crn == '00000':
 			break
 		else:
@@ -89,12 +89,12 @@ def lastStep(crns, cookies):
 	}
 
 	for crn in crns:
-		payload = 'term_in=201823&RSTS_IN=DUMMY&RSTS_IN=RW&assoc_term_in=DUMMY&assoc_term_in=&CRN_IN=DUMMY&CRN_IN=' + str(crn) + '&start_date_in=DUMMY&start_date_in=&end_date_in=DUMMY&end_date_in=&SUBJ=DUMMY&CRSE=DUMMY&SEC=DUMMY&LEVL=DUMMY&CRED=DUMMY&GMOD=DUMMY&TITLE=DUMMY&MESG=DUMMY&REG_BTN=DUMMY&REG_BTN=Submit%2BChanges&regs_row=0&wait_row=0&add_row=10'
+		payload = 'term_in=' + str(term) + '&RSTS_IN=DUMMY&RSTS_IN=RW&assoc_term_in=DUMMY&assoc_term_in=&CRN_IN=DUMMY&CRN_IN=' + str(crn) + '&start_date_in=DUMMY&start_date_in=&end_date_in=DUMMY&end_date_in=&SUBJ=DUMMY&CRSE=DUMMY&SEC=DUMMY&LEVL=DUMMY&CRED=DUMMY&GMOD=DUMMY&TITLE=DUMMY&MESG=DUMMY&REG_BTN=DUMMY&REG_BTN=Submit%2BChanges&regs_row=0&wait_row=0&add_row=10'
 		resp = requests.request("POST", url, data=payload, headers=headers, cookies=cookies)
 		print(str(resp) + ' for %s' % str(crn))
 
-	# with open('register.html', 'w') as outputfile:
-	# 	outputfile.write(resp.text)
+	with open('register.html', 'w') as outputfile:
+		outputfile.write(resp.text)
 
 def waitTillTime(year, month, day):
 	'''
